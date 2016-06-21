@@ -38,4 +38,16 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 4000 }
+
+  # Use mailcatcher for development
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "localhost",
+    :port                 => 1025,
+    :user_name            => 'test@example.com',
+    :password             => '123456',
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  }
 end
