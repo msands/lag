@@ -1,221 +1,130 @@
-/**
- * main.js
- * http://www.codrops.com
- *
- * Licensed under the MIT license.
- * http://www.opensource.org/licenses/mit-license.php
- * 
- * Copyright 2015, Codrops
- * http://www.codrops.com
- */
-;(function(window) {
+jQuery(document).ready(function(){
+	//cache DOM elements
+	var mainContent = $('.cd-main-content'),
+		header = $('.cd-main-header'),
+		sidebar = $('.cd-side-nav'),
+		sidebarTrigger = $('.cd-nav-trigger'),
+		topNavigation = $('.cd-top-nav'),
+		searchForm = $('.cd-search'),
+		accountInfo = $('.account');
 
-	'use strict';
+	//on resize, move search and top nav position according to window width
+	var resizing = false;
+	moveNavigation();
+	$(window).on('resize', function(){
+		if( !resizing ) {
+			(!window.requestAnimationFrame) ? setTimeout(moveNavigation, 300) : window.requestAnimationFrame(moveNavigation);
+			resizing = true;
+		}
+	});
 
-	var support = { transitions: Modernizr.csstransitions },
-		// transition end event name
-		transEndEventNames = { 'WebkitTransition': 'webkitTransitionEnd', 'MozTransition': 'transitionend', 'OTransition': 'oTransitionEnd', 'msTransition': 'MSTransitionEnd', 'transition': 'transitionend' },
-		transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
-		onEndTransition = function( el, callback ) {
-			var onEndCallbackFn = function( ev ) {
-				if( support.transitions ) {
-					if( ev.target != this ) return;
-					this.removeEventListener( transEndEventName, onEndCallbackFn );
-				}
-				if( callback && typeof callback === 'function' ) { callback.call(this); }
-			};
-			if( support.transitions ) {
-				el.addEventListener( transEndEventName, onEndCallbackFn );
-			}
-			else {
-				onEndCallbackFn();
-			}
-		},
-		// the pages wrapper
-		stack = document.querySelector('.pages-stack'),
-		// the page elements
-		pages = [].slice.call(stack.children),
-		// total number of page elements
-		pagesTotal = pages.length,
-		// index of current page
-		current = 0,
-		// menu button
-		menuCtrl = document.querySelector('button.menu-button'),
-		// the navigation wrapper
-		nav = document.querySelector('.pages-nav'),
-		// the menu nav items
-		navItems = [].slice.call(nav.querySelectorAll('.link--page')),
-		// check if menu is open
-		isMenuOpen = false;
+	//on window scrolling - fix sidebar nav
+	var scrolling = false;
+	checkScrollbarPosition();
+	$(window).on('scroll', function(){
+		if( !scrolling ) {
+			(!window.requestAnimationFrame) ? setTimeout(checkScrollbarPosition, 300) : window.requestAnimationFrame(checkScrollbarPosition);
+			scrolling = true;
+		}
+	});
 
-	function init() {
-		buildStack();
-		initEvents();
-	}
+	//mobile only - open sidebar when user clicks the hamburger menu
+	sidebarTrigger.on('click', function(event){
+		event.preventDefault();
+		$([sidebar, sidebarTrigger]).toggleClass('nav-is-visible');
+	});
 
-	function buildStack() {
-		var stackPagesIdxs = getStackPagesIdxs();
-
-		// set z-index, opacity, initial transforms to pages and add class page--inactive to all except the current one
-		for(var i = 0; i < pagesTotal; ++i) {
-			var page = pages[i],
-				posIdx = stackPagesIdxs.indexOf(i);
-
-			if( current !== i ) {
-				classie.add(page, 'page--inactive');
-
-				if( posIdx !== -1 ) {
-					// visible pages in the stack
-					page.style.WebkitTransform = 'translate3d(0,100%,0)';
-					page.style.transform = 'translate3d(0,100%,0)';
-				}
-				else {
-					// invisible pages in the stack
-					page.style.WebkitTransform = 'translate3d(0,75%,-300px)';
-					page.style.transform = 'translate3d(0,75%,-300px)';		
-				}
-			}
-			else {
-				classie.remove(page, 'page--inactive');
-			}
-
-			page.style.zIndex = i < current ? parseInt(current - i) : parseInt(pagesTotal + current - i);
-			
-			if( posIdx !== -1 ) {
-				page.style.opacity = parseFloat(1 - 0.1 * posIdx);
-			}
-			else {
-				page.style.opacity = 0;
+	//click on item and show submenu
+	$('.has-children > a').on('click', function(event){
+		var mq = checkMQ(),
+			selectedItem = $(this);
+		if( mq == 'mobile' || mq == 'tablet' ) {
+			event.preventDefault();
+			if( selectedItem.parent('li').hasClass('selected')) {
+				selectedItem.parent('li').removeClass('selected');
+			} else {
+				sidebar.find('.has-children.selected').removeClass('selected');
+				accountInfo.removeClass('selected');
+				selectedItem.parent('li').addClass('selected');
 			}
 		}
+	});
+
+	//click on account and show submenu - desktop version only
+	accountInfo.children('a').on('click', function(event){
+		var mq = checkMQ(),
+			selectedItem = $(this);
+		if( mq == 'desktop') {
+			event.preventDefault();
+			accountInfo.toggleClass('selected');
+			sidebar.find('.has-children.selected').removeClass('selected');
+		}
+	});
+
+	$(document).on('click', function(event){
+		if( !$(event.target).is('.has-children a') ) {
+			sidebar.find('.has-children.selected').removeClass('selected');
+			accountInfo.removeClass('selected');
+		}
+	});
+
+	//on desktop - differentiate between a user trying to hover over a dropdown item vs trying to navigate into a submenu's contents
+	sidebar.children('ul').menuAim({
+        activate: function(row) {
+        	$(row).addClass('hover');
+        },
+        deactivate: function(row) {
+        	$(row).removeClass('hover');
+        },
+        exitMenu: function() {
+        	sidebar.find('.hover').removeClass('hover');
+        	return true;
+        },
+        submenuSelector: ".has-children",
+    });
+
+	function checkMQ() {
+		//check if mobile or desktop device
+		return window.getComputedStyle(document.querySelector('.cd-main-content'), '::before').getPropertyValue('content').replace(/'/g, "").replace(/"/g, "");
 	}
 
-	// event binding
-	function initEvents() {
-		// menu button click
-		menuCtrl.addEventListener('click', toggleMenu);
-
-		// navigation menu clicks
-		navItems.forEach(function(item) {
-			// which page to open?
-			var pageid = item.getAttribute('href').slice(1);
-			item.addEventListener('click', function(ev) {
-				ev.preventDefault();
-				openPage(pageid);
-			});
-		});
-
-		// clicking on a page when the menu is open triggers the menu to close again and open the clicked page
-		pages.forEach(function(page) {
-			var pageid = page.getAttribute('id');
-			page.addEventListener('click', function(ev) {
-				if( isMenuOpen ) {
-					ev.preventDefault();
-					openPage(pageid);
-				}
-			});
-		});
-
-		// keyboard navigation events
-		document.addEventListener( 'keydown', function( ev ) {
-			if( !isMenuOpen ) return; 
-			var keyCode = ev.keyCode || ev.which;
-			if( keyCode === 27 ) {
-				closeMenu();
-			}
-		} );
+	function moveNavigation(){
+  		var mq = checkMQ();
+        
+        if ( mq == 'mobile' && topNavigation.parents('.cd-side-nav').length == 0 ) {
+        	detachElements();
+			topNavigation.appendTo(sidebar);
+			searchForm.removeClass('is-hidden').prependTo(sidebar);
+		} else if ( ( mq == 'tablet' || mq == 'desktop') &&  topNavigation.parents('.cd-side-nav').length > 0 ) {
+			detachElements();
+			searchForm.insertAfter(header.find('.cd-logo'));
+			topNavigation.appendTo(header.find('.cd-nav'));
+		}
+		checkSelected(mq);
+		resizing = false;
 	}
 
-	// toggle menu fn
-	function toggleMenu() {
-		if( isMenuOpen ) {
-			closeMenu();
-		}
-		else {
-			openMenu();
-			isMenuOpen = true;
-		}
+	function detachElements() {
+		topNavigation.detach();
+		searchForm.detach();
 	}
 
-	// opens the menu
-	function openMenu() {
-		// toggle the menu button
-		classie.add(menuCtrl, 'menu-button--open')
-		// stack gets the class "pages-stack--open" to add the transitions
-		classie.add(stack, 'pages-stack--open');
-		// reveal the menu
-		classie.add(nav, 'pages-nav--open');
-
-		// now set the page transforms
-		var stackPagesIdxs = getStackPagesIdxs();
-		for(var i = 0, len = stackPagesIdxs.length; i < len; ++i) {
-			var page = pages[stackPagesIdxs[i]];
-			page.style.WebkitTransform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)'; // -200px, -230px, -260px
-			page.style.transform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)';
-		}
+	function checkSelected(mq) {
+		//on desktop, remove selected class from items selected on mobile/tablet version
+		if( mq == 'desktop' ) $('.has-children.selected').removeClass('selected');
 	}
 
-	// closes the menu
-	function closeMenu() {
-		// same as opening the current page again
-		openPage();
-	}
-
-	// opens a page
-	function openPage(id) {
-		var futurePage = id ? document.getElementById(id) : pages[current],
-			futureCurrent = pages.indexOf(futurePage),
-			stackPagesIdxs = getStackPagesIdxs(futureCurrent);
-
-		// set transforms for the new current page
-		futurePage.style.WebkitTransform = 'translate3d(0, 0, 0)';
-		futurePage.style.transform = 'translate3d(0, 0, 0)';
-		futurePage.style.opacity = 1;
-
-		// set transforms for the other items in the stack
-		for(var i = 0, len = stackPagesIdxs.length; i < len; ++i) {
-			var page = pages[stackPagesIdxs[i]];
-			page.style.WebkitTransform = 'translate3d(0,100%,0)';
-			page.style.transform = 'translate3d(0,100%,0)';
-		}
-
-		// set current
-		if( id ) {
-			current = futureCurrent;
-		}
+	function checkScrollbarPosition() {
+		var mq = checkMQ();
 		
-		// close menu..
-		classie.remove(menuCtrl, 'menu-button--open');
-		classie.remove(nav, 'pages-nav--open');
-		onEndTransition(futurePage, function() {
-			classie.remove(stack, 'pages-stack--open');
-			// reorganize stack
-			buildStack();
-			isMenuOpen = false;
-		});
+		if( mq != 'mobile' ) {
+			var sidebarHeight = sidebar.outerHeight(),
+				windowHeight = $(window).height(),
+				mainContentHeight = mainContent.outerHeight(),
+				scrollTop = $(window).scrollTop();
+
+			( ( scrollTop + windowHeight > sidebarHeight ) && ( mainContentHeight - sidebarHeight != 0 ) ) ? sidebar.addClass('is-fixed').css('bottom', 0) : sidebar.removeClass('is-fixed').attr('style', '');
+		}
+		scrolling = false;
 	}
-
-	// gets the current stack pages indexes. If any of them is the excludePage then this one is not part of the returned array
-	function getStackPagesIdxs(excludePageIdx) {
-		var nextStackPageIdx = current + 1 < pagesTotal ? current + 1 : 0,
-			nextStackPageIdx_2 = current + 2 < pagesTotal ? current + 2 : 1,
-			idxs = [],
-
-			excludeIdx = excludePageIdx || -1;
-
-		if( excludePageIdx != current ) {
-			idxs.push(current);
-		}
-		if( excludePageIdx != nextStackPageIdx ) {
-			idxs.push(nextStackPageIdx);
-		}
-		if( excludePageIdx != nextStackPageIdx_2 ) {
-			idxs.push(nextStackPageIdx_2);
-		}
-
-		return idxs;
-	}
-
-	init();
-
-})(window);
+});
