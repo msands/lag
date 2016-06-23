@@ -23,7 +23,7 @@ gem 'bootstrap-wysihtml5-rails', '~> 0.3.3.8'
 gem 'simple_form', '~> 3.2.1'
 
 # Font-awesome icons
-gem 'font-awesome-sass', '~> 4.5.0'
+gem 'font-awesome-rails', '~> 4.6.3.1'
 
 # Use Sim templating engine and autogenerate Slim views
 gem 'slim', '~> 3.0.6'
