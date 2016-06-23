@@ -10,8 +10,7 @@ html.no-js
 
   body
     = render 'layouts/nav'
-    .text-center
-      = flash_messages
     main.cd-main-content
       .content-wrapper
+        = flash_messages
         = yield

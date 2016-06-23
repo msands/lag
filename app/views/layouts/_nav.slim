@@ -1,6 +1,5 @@
 header.cd-main-header
-  = link_to root_path, class: "cd-logo" do
-    = image_tag('cd-logo.svg')
+  = link_to image_tag('cd-logo.svg'), root_path, class: "cd-logo"
   .cd-search.is-hidden
     form action="#0"
       input placeholder="Search..." type="search" /
@@ -18,19 +17,19 @@ header.cd-main-header
         li.has-children.account
           a href="#0"
             = image_tag('cd-avatar.png')
+              /! will be selected user's avatar
             = current_user.username
           ul
             li = link_to "My profile", "#"
             li = link_to "Edit Account", edit_user_registration_path
             li = link_to "Logout", destroy_user_session_path, method: :delete
-              a href="#0"  Logout
       - else
         li.has-children.account
           = link_to "Account", "#"
           ul
             li = link_to "Sign Up", new_user_registration_path
-            li = link_to "Sign In", new_user_session_path
-/! .cd-main-header
+            li = link_to "Log in", new_user_session_path
+
 main.cd-main-content
   nav.cd-side-nav
     ul
