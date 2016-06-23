@@ -50,7 +50,7 @@ Main Page Content
 }
 .cd-main-content .content-wrapper h1 {
   text-align: center;
-  padding: 3em 0;
+  padding: 1em 0;
   font-size: 2rem;
 }
 .cd-main-content::before {
@@ -64,7 +64,7 @@ Main Page Content
     padding-top: 55px;
   }
   .cd-main-content .content-wrapper h1 {
-    padding: 4em 0;
+    padding: 2em 0;
     font-size: 3.2rem;
     font-weight: 300;
   }
@@ -233,7 +233,7 @@ Header
   transform: translateY(-50%);
   height: 16px;
   width: 16px;
-  background: image-url(cd-search.svg) no-repeat 0 0;
+  background: url(cd-search.svg) no-repeat 0 0;
 }
 .cd-search input {
   padding-left: 32px;
@@ -439,7 +439,7 @@ Sidebar
   transform: translateY(-50%);
   height: 16px;
   width: 16px;
-  background: image-url(cd-nav-icons.svg) no-repeat 0 0;
+  background: url(cd-nav-icons.svg) no-repeat 0 0;
 }
 .cd-side-nav > ul > li.overview > a::before {
   background-position: -64px 0;
@@ -641,7 +641,7 @@ Sidebar
   -ms-transform: translateY(-50%);
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
-  background: image-url(cd-arrow.svg);
+  background: url(cd-arrow.svg);
 }
 .has-children.selected > ul {
   display: block;
