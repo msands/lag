@@ -6,6 +6,7 @@ gem 'pg'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'jquery-turbolinks', '~> 2.1.0'
 gem 'jbuilder', '~> 2.0'
@@ -32,8 +33,8 @@ gem 'slim-rails', '~> 3.0.1'
 gem 'figaro', '~> 1.1.1'
 
 # User authentication
-gem 'devise', '~> 3.5.6'
-gem 'devise_invitable', '~> 1.5.5'
+gem 'devise', '~> 4.1.1'
+gem 'devise_invitable', '~> 1.6'
 
 # Add birthday gem
 gem 'birthday', '~> 0.3.0'

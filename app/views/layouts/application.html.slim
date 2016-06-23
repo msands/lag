@@ -1,10 +1,16 @@
 doctype html
-html
+html.no-js
   head
+    meta content="width=device-width, initial-scale=1.0" name="viewport" /
     title
-      | Lag
+      | LAG
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+
   body
-    = yield
+    = render 'layouts/nav'
+    main.cd-main-content
+      .content-wrapper
+        = flash_messages
+        = yield

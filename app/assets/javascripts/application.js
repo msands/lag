@@ -10,7 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require modernizr
+//= require jquery2
 //= require jquery_ujs
+//= require jquery-ui
+//= require jquery.turbolinks
 //= require turbolinks
-//= require_tree .
+//= require jquery.menu-aim
+//= require main
