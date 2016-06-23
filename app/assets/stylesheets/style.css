@@ -238,7 +238,7 @@ Header
   transform: translateY(-50%);
   height: 16px;
   width: 16px;
-  background: asset-path("/images/cd-search.svg") no-repeat 0 0;
+  background: asset-path("/app/assets/images/cd-search.svg") no-repeat 0 0;
 }
 .cd-search input {
   padding-left: 32px;
@@ -444,7 +444,7 @@ Sidebar
   transform: translateY(-50%);
   height: 16px;
   width: 16px;
-  background: asset-path("/images/cd-nav-icons.svg") no-repeat 0 0;
+  background: asset-path("/app/assets/images/cd-nav-icons.svg") no-repeat 0 0;
 }
 .cd-side-nav > ul > li.overview > a::before {
   background-position: -64px 0;
@@ -646,7 +646,7 @@ Sidebar
   -ms-transform: translateY(-50%);
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
-  background: asset-path("/images/cd-arrow.svg");
+  background: asset-path("/app/assets/images/cd-arrow.svg");
 }
 .has-children.selected > ul {
   display: block;
