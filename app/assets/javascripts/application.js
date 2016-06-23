@@ -13,7 +13,7 @@
 //= require modernizr
 //= require jquery2
 //= require jquery_ujs
-//= require jquery-ui
+//= require jquery-ui/core
 //= require jquery.turbolinks
 //= require turbolinks
 //= require jquery.menu-aim
