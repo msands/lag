@@ -9,10 +9,8 @@ header.cd-main-header
     span
   nav.cd-nav
     ul.cd-top-nav
-      li
-        a href="#0"  Tour
-      li
-        a href="#0"  Support
+      li = link_to "About", about_path
+      li = link_to "Support", "#"
       - if user_signed_in?
         li.has-children.account
           a href="#0"
