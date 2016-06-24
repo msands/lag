@@ -238,7 +238,7 @@ Header
   transform: translateY(-50%);
   height: 16px;
   width: 16px;
-  background: url("cd-search.svg") no-repeat 0 0;
+  background: asset-url("cd-search.svg") no-repeat 0 0;
 }
 .cd-search input {
   padding-left: 32px;
@@ -444,7 +444,7 @@ Sidebar
   transform: translateY(-50%);
   height: 16px;
   width: 16px;
-  background: url("cd-nav-icons.svg") no-repeat 0 0;
+  background: asset-url("cd-nav-icons.svg") no-repeat 0 0;
 }
 .cd-side-nav > ul > li.overview > a::before {
   background-position: -64px 0;
@@ -646,7 +646,7 @@ Sidebar
   -ms-transform: translateY(-50%);
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
-  background: url("cd-arrow.svg");
+  background: asset-url("cd-arrow.svg");
 }
 .has-children.selected > ul {
   display: block;
