@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'user_profiles/index'
+
+  get 'user_profiles/new'
+
+  get 'user_profiles/show'
+
+  get 'user_profiles/edit'
+
   devise_for :users
   get 'about' => 'static_pages#about'
   get 'terms' => 'static_pages#terms'
