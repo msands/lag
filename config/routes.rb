@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
 
-  get 'user_profiles/index'
+  resources :user_profiles, except: :destroy
 
-  get 'user_profiles/new'
-
-  get 'user_profiles/show'
-
-  get 'user_profiles/edit'
+  resource :my_profile, only: :show
 
   devise_for :users
+
   get 'about' => 'static_pages#about'
   get 'terms' => 'static_pages#terms'
   get 'privacy' => 'static_pages#privacy'

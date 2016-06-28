@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   has_one :user_profile, dependent: :destroy
 
-  delegate :username, to: :user_profile, allow_nil: true
+  #delegate :username, to: :user_profile, allow_nil: true
 
   validates :username, :presence => true, :uniqueness => { :case_sensitive => false }
 
