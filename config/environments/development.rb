@@ -50,4 +50,7 @@ Rails.application.configure do
     :password             => '123456',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
+
+  # Enable helper methods
+  config.action_controller.include_all_helpers = true
 end

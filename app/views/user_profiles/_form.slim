@@ -2,10 +2,10 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :gender
+    = f.input :gender, collection: UserProfile::GENDER, as: :radio_buttons
     = f.input :birthday, as: :date, start_year: Date.today.year - 30, end_year: Date.today.year - 13, selected: Date.today.year - 15, order: [:month, :day, :year]
     = f.input :church
-    = f.input :state
+    = f.input :state, collection: us_states, selected: "GA"
     = f.input :website
     = f.input :interests, collection: UserProfile::INTERESTS, as: :check_boxes
 
