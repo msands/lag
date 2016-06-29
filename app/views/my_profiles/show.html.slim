@@ -1,5 +1,7 @@
+text-center.h1 = @user_profile.user.username
+
 .col-md-3
-  p = image_tag("http://placehold.it/200x266")
+  p = image_tag("http://placehold.it/200x200")
   h4 = link_to "View My Website", "http://#{@user_profile.website}", target: "_blank"
 
   p
@@ -7,14 +9,13 @@
     =< @user_profile.birthday_age
 
 .col-md-9
-  h2 = @user_profile.user.username
   p = @user_profile.church
   p = @user_profile.state
 
   blockquote Interests
-  p - @user_profile.interests.each do |user_interests|
-      br
-      = user_interests
+  - @user_profile.interests.each do |user_interests|
+    = user_interests
+    br
 
   blockquote About Me
   p = @user_profile.about

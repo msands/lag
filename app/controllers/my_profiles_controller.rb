@@ -1,4 +1,4 @@
-class MyProfileController < ApplicationController
+class MyProfilesController < ApplicationController
 
   before_action :authenticate_user!
 
