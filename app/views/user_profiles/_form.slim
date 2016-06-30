@@ -6,7 +6,7 @@
     = f.input :birthday, as: :date, start_year: Date.today.year - 40, end_year: Date.today.year - 13, selected: Date.today.year - 15, order: [:month, :day, :year]
     = f.input :church, placeholder: "What church do you go to?"
     = f.input :state, collection: us_states, selected: "GA"
-    = f.input :website, placeholder: "http://www.example.com"
+    = f.input :website, placeholder: "www.example.com"
     = f.input :interests, collection: UserProfile::INTERESTS, as: :check_boxes
     = f.input :about, :input_html => {:rows => 6}, label: "About me", placeholder: "Tell us a little about yourself..."
 
