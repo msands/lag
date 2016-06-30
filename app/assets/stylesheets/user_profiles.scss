@@ -1,0 +1,33 @@
+// Place all the styles related to the UserProfiles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  padding-top: 30px;
+}
+
+blockquote {
+  border-left: 5px solid #1784C7;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: bold;
+}
+
+hr {
+  border-color: #1784C7
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+.box {
+  margin: 5px;
+  width: 175px;
+}
+
+.box img {
+  width: 100%;
+}

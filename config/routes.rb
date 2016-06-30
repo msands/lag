@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :user_profiles, except: :destroy
+
+  resource :my_profile, only: :show
+
   devise_for :users
+
   get 'about' => 'static_pages#about'
   get 'terms' => 'static_pages#terms'
   get 'privacy' => 'static_pages#privacy'

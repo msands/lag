@@ -1,0 +1,32 @@
+.text-center.h1 = @user_profile.user.username
+
+.col-md-3
+  p = image_tag("http://placehold.it/200x200")
+  hr
+  h4 = link_to "View My Website", "http://#{@user_profile.website}", target: "_blank"
+  hr
+  p
+    strong Age:
+    =< @user_profile.birthday_age
+
+  blockquote Info
+  p
+    strong Last Login:
+    =< @user_profile.user.last_sign_in_at.strftime("%B %d, %Y")
+    br
+    strong Sign Up:
+    =< @user_profile.user.created_at.strftime("%B %d, %Y")
+
+.col-md-9
+  p
+    = @user_profile.church
+    br
+    = @user_profile.state
+
+  blockquote Interests
+  - @user_profile.interests.each do |user_interests|
+    = user_interests
+    br
+
+  blockquote About Me
+  p = @user_profile.about
