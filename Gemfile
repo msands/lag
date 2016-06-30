@@ -36,6 +36,9 @@ gem 'figaro', '~> 1.1.1'
 gem 'devise', '~> 4.1.1'
 gem 'devise_invitable', '~> 1.6'
 
+# Add admin dashboard
+gem 'activeadmin', '~>1.0.0.pre3'
+
 # Add birthday gem
 gem 'birthday', '~> 0.3.0'
 
