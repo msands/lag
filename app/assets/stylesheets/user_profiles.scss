@@ -3,9 +3,22 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-  padding-top: 50px
+  padding-top: 30px;
 }
 
 blockquote {
-  border-left: 5px solid #1784C7
+  border-left: 5px solid #1784C7;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: bold;
+}
+
+hr {
+  border-color: #1784C7
+}
+
+p {
+  margin-bottom: 15px;
 }
