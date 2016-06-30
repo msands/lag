@@ -22,7 +22,7 @@ class UserProfilesController < ApplicationController
     @user_profile = UserProfile.new(user_profile_params)
     @user_profile.user = current_user
     if @user_profile.save
-      redirect_to my_profiles_path, notice: "Profile successfully saved!"
+      redirect_to my_profile_path, notice: "Profile successfully saved!"
     else
       flash[:error] = "Oops, something went wrong"
       render "new"
@@ -33,7 +33,7 @@ class UserProfilesController < ApplicationController
     @user_profile = UserProfile.find(params[:id])
     if @user_profile.update_attributes(user_profile_params)
       flash[:success] = "Profile updated"
-      redirect_to my_profiles_path
+      redirect_to my_profile_path
     else
       render "edit"
     end

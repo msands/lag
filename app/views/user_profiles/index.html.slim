@@ -1,0 +1,18 @@
+.text-center.h2 View all Users
+
+- @user_profiles.each do |user_profile|
+  .col-md-3
+    .box.panel.panel-default
+      .panel-heading
+        = link_to user_profile.user.username, user_profile
+
+      .panel-body
+        = image_tag("http://placehold.it/150x150")
+
+      .panel-footer
+        p
+          strong Church:
+          =< user_profile.church
+          br
+          strong State:
+          =< user_profile.state
