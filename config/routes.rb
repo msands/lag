@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'forum/index'
+  resources :forums
 
   resources :user_profiles, except: :destroy
 
