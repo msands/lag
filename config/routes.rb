@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'forum/index'
+
   resources :user_profiles, except: :destroy
 
   resource :my_profile, only: :show
