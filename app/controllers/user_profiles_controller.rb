@@ -1,5 +1,6 @@
 class UserProfilesController < ApplicationController
   before_action :authenticate_user!, except: :index
+  before_action :find_user_profile, only: [:show, :edit, :update]
   skip_before_action :check_profile, only: [:new, :create]
 
   def index
@@ -7,7 +8,7 @@ class UserProfilesController < ApplicationController
   end
 
   def show
-    @user_profile = UserProfile.find(params[:id])
+    find_user_profile
   end
 
   def new
@@ -15,7 +16,7 @@ class UserProfilesController < ApplicationController
   end
 
   def edit
-    @user_profile = UserProfile.find(params[:id])
+    find_user_profile
   end
 
   def create
@@ -30,7 +31,7 @@ class UserProfilesController < ApplicationController
   end
 
   def update
-    @user_profile = UserProfile.find(params[:id])
+    find_user_profile
     if @user_profile.update_attributes(user_profile_params)
       flash[:success] = "Profile updated"
       redirect_to my_profile_path
@@ -40,6 +41,10 @@ class UserProfilesController < ApplicationController
   end
 
   protected
+
+  def find_user_profile
+    @user_profile = UserProfile.find(params[:id])
+  end
 
   def user_profile_params
     params.require(:user_profile).permit(:church, :state, :website, :birthday, :gender, :about, interests: [])
