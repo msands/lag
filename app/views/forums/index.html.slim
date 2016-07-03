@@ -1,2 +1,9 @@
-h1 Forums#index
-p Find me in app/views/forums/index.html.slim
+h1 Forums
+
+- @forums.each do |forum|
+  h2 = link_to forum.name, forum
+  h4 = forum.description
+  p = time_ago_in_words(forum.created_at)
+
+- if current_user.admin
+  = link_to "Add a new forum", new_forum_path
