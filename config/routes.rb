@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :forums
+  resources :forums do
+    resources :topics
+  end
 
   resources :user_profiles, except: :destroy
 
