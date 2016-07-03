@@ -30,15 +30,22 @@ class ForumsController < ApplicationController
   end
 
   def update
+    if @forum.update(forum_params)
+      redirect_to @forum
+    else
+      render 'edit'
+    end
   end
 
   def destroy
+    @post.destroy
+    redirect_to forums_path
   end
 
   protected
 
   def find_forum
-    @form = Forum.find(params[:id])
+    @forum = Forum.find(params[:id])
   end
 
   def forum_params

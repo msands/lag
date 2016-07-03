@@ -1,2 +1,6 @@
-h1 Forums#show
-p Find me in app/views/forums/show.html.slim
+h1 = @forum.name
+h2 = @forum.description
+
+= link_to "Edit", edit_forum_path(@forum)
+= link_to "Delete", forum_path(@forum), method: :delete, data: { confirm: "Are you sure?" }
+=  link_to "Forums", forum_path
