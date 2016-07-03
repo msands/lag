@@ -1,9 +1,15 @@
-h1 Forums
+#forums
+  h1 Forums
 
-- @forums.each do |forum|
-  h2 = link_to forum.name, forum
-  h4 = forum.description
-  p = time_ago_in_words(forum.created_at)
+  - @forums.each do |forum|
+    .forum
+      h2.name = link_to forum.name, forum
+      h4.description = forum.description
+      p.date
+        | Created
+        =<> time_ago_in_words(forum.created_at)
+        | ago by
+        =<> forum.user.username
 
-- if current_user.admin
-  = link_to "Add a new forum", new_forum_path
+  - if current_user.admin
+    = link_to "Add a new forum", new_forum_path
