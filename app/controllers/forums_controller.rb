@@ -1,5 +1,6 @@
 class ForumsController < ApplicationController
   before_action :find_forum, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @forums = Forum.all
@@ -40,7 +41,7 @@ class ForumsController < ApplicationController
     @form = Forum.find(params[:id])
   end
 
-  def forums_params
-    params.require(:forum).permit(:title, :description)
+  def forum_params
+    params.require(:forum).permit(:name, :description)
   end
 end
