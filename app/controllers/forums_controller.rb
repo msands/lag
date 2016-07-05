@@ -8,6 +8,7 @@ class ForumsController < ApplicationController
 
   def show
     find_forum
+    @topics = Topic.all
   end
 
   def new
@@ -27,6 +28,7 @@ class ForumsController < ApplicationController
   end
 
   def edit
+    find_forum
   end
 
   def update
