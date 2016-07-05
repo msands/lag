@@ -9,7 +9,7 @@
         | Created
         =<> time_ago_in_words(forum.created_at)
         | ago by
-        =<> forum.user.username
+        =<> link_to forum.user.username, forum.user.user_profile
 
   - if current_user.admin
     = link_to "Add a new forum", new_forum_path
