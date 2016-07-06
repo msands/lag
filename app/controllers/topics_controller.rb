@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_action :find_topic, except: only: [:show, :edit, :update, :destroy]
+  before_action :find_topic, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
   def index
@@ -12,16 +12,16 @@ class TopicsController < ApplicationController
 
   def new
     @topic = Topic.new
+    @topic.forum_id = params[:forum_id]
   end
 
   def create
     @topic = Topic.new(topic_params)
     @topic.user_id = current_user.id
-    @topic.forum_id = forum.id
     @topic.save
 
     if @topic.save
-      redirect_to @topic
+      redirect_to forum_topic_url(id: @topic.id, forum_id: @topic.forum_id)
     else
       render 'new'
     end
@@ -51,6 +51,6 @@ class TopicsController < ApplicationController
   end
 
   def topic_params
-    params.require(:topic).permit(:name, :description)
+    params.require(:topic).permit(:name, :description, :forum_id)
   end
 end

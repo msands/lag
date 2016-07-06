@@ -1,0 +1,4 @@
+= simple_form_for @topic, url: forum_topics_path(forum_id: @topic.forum_id) do |t|
+  = t.input :name
+  = t.input :description, maxlength: 200, hint: "Max 200 characters"
+  = t.submit
