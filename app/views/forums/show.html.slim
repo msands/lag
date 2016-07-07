@@ -2,5 +2,13 @@ h1 = @forum.name
 h2 = @forum.description
 
 = link_to "Edit", edit_forum_path(@forum)
+| |
 = link_to "Delete", forum_path(@forum), method: :delete, data: { confirm: "Are you sure?" }
+| |
 = link_to "Forums", forums_path
+
+.container
+  - @topics.each do |topic|
+    = link_to topic.name, forum_topic_url(@forum,topic)
+    br
+    = topic.description
