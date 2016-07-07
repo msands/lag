@@ -9,6 +9,6 @@ h2 = @forum.description
 
 .container
   - @topics.each do |topic|
-    = link_to topic.name, forum_topic_url(@forum,topic)
+    = link_to topic.name, forum_topic_path(@forum,topic)
     br
     = topic.description
