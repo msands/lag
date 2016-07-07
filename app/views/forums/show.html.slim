@@ -7,6 +7,8 @@ h2 = @forum.description
 | |
 = link_to "Forums", forums_path
 
+p = link_to "New Topic", new_forum_topic_path(@forum)
+
 .container
   - @topics.each do |topic|
     = link_to topic.title, forum_topic_path(@forum,topic)
