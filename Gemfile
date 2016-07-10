@@ -39,6 +39,9 @@ gem 'devise_invitable', '~> 1.6'
 # Add birthday gem
 gem 'birthday', '~> 0.3.0'
 
+# Use names vs ID numbers on URLs
+gem 'friendly_id', '~> 5.1.0'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'

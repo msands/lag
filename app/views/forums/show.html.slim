@@ -11,6 +11,7 @@ p = link_to "New Topic", new_forum_topic_path(@forum)
 
 .container
   - @topics.each do |topic|
-    = link_to topic.title, forum_topic_path(@forum,topic)
-    br
-    = topic.message
+    p
+      = link_to topic.title, forum_topic_path(@forum, topic)
+      br
+      = topic.message
