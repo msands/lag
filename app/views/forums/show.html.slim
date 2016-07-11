@@ -1,17 +1,19 @@
-h1 = @forum.name
-h2 = @forum.description
-
-= link_to "Edit", edit_forum_path(@forum)
-| |
-= link_to "Delete", forum_path(@forum), method: :delete, data: { confirm: "Are you sure?" }
-| |
-= link_to "Forums", forums_path
-
-p = link_to "New Topic", new_forum_topic_path(@forum)
-
-.container
-  - @topics.each do |topic|
-    p
-      = link_to topic.title, forum_topic_path(@forum, topic)
+#topics
+  -if current_user.admin
+    .pull-right
+      = link_to "Edit Forum", edit_forum_path(@forum)
       br
-      = topic.message
+      =<> link_to "Delete Forum", forum_path(@forum), method: :delete, data: { confirm: "Are you sure?" }
+  h1 = @forum.name
+  h2 = @forum.description
+
+  = link_to "Forums", forums_path
+
+  p = link_to "New Topic", new_forum_topic_path(@forum)
+
+  .container
+    - @topics.each do |topic|
+      p
+        = link_to topic.title, forum_topic_path(@forum, topic)
+        br
+        = topic.message
