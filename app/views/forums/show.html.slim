@@ -10,10 +10,12 @@
   = link_to "Forums", forums_path
 
   p = link_to "New Topic", new_forum_topic_path(@forum)
+  hr
 
-  .container
-    - @topics.each do |topic|
-      p
-        = link_to topic.title, forum_topic_path(@forum, topic)
-        br
-        = topic.message
+  - @topics.each do |topic|
+    .topic
+      h2 = link_to topic.title, forum_topic_path(@forum, topic)
+      p = topic.message
+      topic.topic_author
+        | Posted by
+        =< link_to topic.user.username, topic.user.user_profile
