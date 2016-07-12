@@ -56,7 +56,8 @@ Main Page Content
 .cd-main-content .content-wrapper h1 {
   text-align: center;
   padding: 1em 0;
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-family: "Mix Redux";
 }
 .cd-main-content::before {
   /* never visible - used to check MQ in jQuery */
@@ -69,8 +70,8 @@ Main Page Content
     padding-top: 55px;
   }
   .cd-main-content .content-wrapper h1 {
-    padding: 2em 0;
-    font-size: 3.2rem;
+    padding: .25em 0;
+    font-size: 5rem;
     font-weight: 300;
   }
   .cd-main-content::before {
