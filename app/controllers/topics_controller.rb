@@ -34,7 +34,8 @@ class TopicsController < ApplicationController
 
   def update
     if @topic.update(topic_params)
-      redirect_to @topic
+      flash[:success] = "Topic updated"
+      redirect_to forum_topic_path(forum_id: @topic.forum_id)
     else
       render 'edit'
     end
