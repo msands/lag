@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
   resources :forums do
-    resources :topics, only: [:index, :show]
+    resources :topics, only: [:index, :show, :new, :edit, :create]
   end
-  resources :topics, except: [:index, :show]
+  resources :topics, except: [:index, :show, :new]
 
 
   resources :user_profiles, except: :destroy
