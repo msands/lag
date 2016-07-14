@@ -42,7 +42,8 @@ class TopicsController < ApplicationController
 
   def destroy
     @topic.destroy
-    redirect_to topics_path
+    redirect_to forums_path
+    flash[:success] = "Your topic has been deleted"
   end
 
   protected

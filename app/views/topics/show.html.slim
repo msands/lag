@@ -1,4 +1,5 @@
 #topics
   .topic
+    p.pull-right = link_to "Delete Topic", topic_path(@topic), method: :delete, data: { confirm: "Are you sure?" }
     h1 = @topic.title
     p = @topic.message
