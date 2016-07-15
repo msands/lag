@@ -30,3 +30,8 @@ h1 = @user_profile.user.username
 
   blockquote About Me
   p = @user_profile.about
+
+  blockquote My Topics
+  ul
+    - current_user.topics.each do |my_topics|
+      li = link_to my_topics.title, forum_topic_path(forum_id: my_topics.forum_id, id: my_topics.id)

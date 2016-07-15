@@ -12,10 +12,13 @@
   p = link_to "New Topic", new_forum_topic_path(@forum)
   hr
 
-  - @topics.each do |topic|
+  - @topics.order('updated_at DESC').each do |topic|
     .topic
       h2 = link_to topic.title, forum_topic_path(@forum, topic)
-      p = topic.message
+      p = topic.message.first(100)
       topic.topic_author
-        | Posted by
+        | Created
+        =<> time_ago_in_words(topic.updated_at)
+        | by
         =< link_to topic.user.username, topic.user.user_profile
+
