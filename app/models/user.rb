@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_one :user_profile, dependent: :destroy
   has_many :forums
   has_many :topics
+  has_many :comments
 
   #delegate :username, to: :user_profile, allow_nil: true
 

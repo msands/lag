@@ -4,3 +4,10 @@
       p.pull-right = link_to "Delete Topic", topic_path(@topic), method: :delete, data: { confirm: "Are you sure?" }
     h1 = @topic.title
     p = @topic.message
+
+    #comments
+      h2 = @topic.comments.count
+      == render @topic.comments
+
+      h3 Reply to Thread
+      == render 'comments/form'
