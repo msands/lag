@@ -1,24 +1,22 @@
 #topics
   -if current_user.admin
     .pull-right
-      = link_to "Edit Forum", edit_forum_path(@forum)
-      br
-      =<> link_to "Delete Forum", forum_path(@forum), method: :delete, data: { confirm: "Are you sure?" }
+      = link_to "Edit Forum", edit_forum_path(@forum), class: "btn btn-primary btn-xs"
+      =< link_to "Delete Forum", forum_path(@forum), method: :delete, data: { confirm: "This will delete the forum and all topics. This CANNOT be undone.  Are you sure?" }, class: "btn btn-danger btn-xs"
   h1 = @forum.name
   h2 = @forum.description
 
-  = link_to "Forums", forums_path
-
-  p = link_to "New Topic", new_forum_topic_path(@forum)
+  p = link_to "Create a New Topic", new_forum_topic_path(@forum), class: "btn btn-success btn-md"
+  = link_to "Back", forums_path
   hr
 
   - @topics.order('updated_at DESC').each do |topic|
     .topic
       h2 = link_to topic.title, forum_topic_path(@forum, topic)
       p = topic.message.first(100)
-      topic.topic_author
+      .topic_author
         | Created
-        =<> time_ago_in_words(topic.updated_at)
-        | by
+        =<> time_ago_in_words(topic.created_at)
+        | ago by
         =< link_to topic.user.username, topic.user.user_profile
 
