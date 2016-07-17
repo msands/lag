@@ -1,5 +1,7 @@
 .comment
   p = comment.content
+  p = link_to "Edit comment", edit_forum_topic_comment_path(topic_id: @topic.id, id: comment.id)
+  p = link_to "Delete comment", forum_topic_comment_path(topic_id: @topic.id, id: comment.id), method: :delete, data: { confirm: "Are you sure?" }
   p
     - if comment.updated_at != comment.created_at
       | Created

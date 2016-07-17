@@ -1,0 +1,5 @@
+h1 Edit your comment
+
+= simple_form_for [@topic, @comment], :url => forum_topic_comment_path(topic_id: @topic.id) do |c|
+  = c.input :content
+  = c.submit
