@@ -1,0 +1,15 @@
+.comment
+  p = comment.content
+  - if current_user.admin || comment.user_id == current_user.id
+    .pull-right
+      = link_to "Edit comment", edit_forum_topic_comment_path(topic_id: @topic.id, id: comment.id), class: "btn btn-primary btn-xs"
+      =< link_to "Delete comment", forum_topic_comment_path(topic_id: @topic.id, id: comment.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs"
+  p
+    - if comment.created_at.to_i == comment.updated_at.to_i
+      | Created
+      =<> time_ago_in_words(comment.created_at)
+    - elsif comment.updated_at.to_i != comment.created_at.to_i
+      | Edited
+      =<> time_ago_in_words(comment.updated_at)
+    | by
+    =<> link_to comment.user.username, comment.user.user_profile

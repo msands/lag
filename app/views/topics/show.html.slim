@@ -1,0 +1,15 @@
+#topics
+  .topic
+    - if current_user.admin || topic_owner
+      p.pull-right = link_to "Delete Topic", topic_path(@topic), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs"
+    h1 = @topic.title
+    p = @topic.message
+
+    #comments
+      h2
+        => @topic.comments.count
+        | comments
+      == render @topic.comments
+
+      h3 Reply to Thread
+      == render 'comments/form'

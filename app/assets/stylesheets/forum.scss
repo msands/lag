@@ -1,0 +1,36 @@
+// Place all the styles related to the forum controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#forums {
+  background: white;
+  padding: 1em 5%;
+  border-radius: .5em;
+  h1 {
+    text-align: center;
+    padding: .25em 0;
+  }
+  .forum {
+    margin: 1em 0;
+    padding: 1em 0;
+    border-bottom: 1px solid #D1D1D1;
+    .name {
+      margin: 0;
+      a {
+        color: #397CAC;
+        text-decoration: none;
+        font-weight: 100;
+        font-size: 1.25em;
+      }
+    }
+    .description {
+      font-weight: 100;
+      font-size: 16px;
+    }
+    .date {
+      margin-top: .25rem;
+      font-size: 1rem;
+      color: #B2BAC2;
+    }
+  }
+}

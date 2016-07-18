@@ -1,0 +1,6 @@
+= simple_form_for @topic do |t|
+  = t.input :title, :input_html => { :rows => 1 }
+  = t.input :message, :input_html => { :rows => 10 }
+  = t.hidden_field :forum_id do
+    = @topic.forum_id
+  = t.submit

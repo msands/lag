@@ -1,0 +1,15 @@
+#forums
+  h1 Forums
+
+  - @forums.order('name ASC').each do |forum|
+    .forum
+      h2.name = link_to forum.name, forum
+      h4.description = forum.description
+      p.date
+        | Created
+        =<> time_ago_in_words(forum.created_at)
+        | ago by
+        =<> link_to forum.user.username, forum.user.user_profile
+
+  - if current_user.admin
+    = link_to "Add a new forum", new_forum_path, class: "btn btn-primary btn-sm"

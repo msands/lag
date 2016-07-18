@@ -53,4 +53,7 @@ Rails.application.configure do
 
   # Enable helper methods
   config.action_controller.include_all_helpers = true
+
+  # Set Eastern time zone
+  config.time_zone = 'Eastern Time (US & Canada)'
 end

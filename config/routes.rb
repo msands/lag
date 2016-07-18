@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :forums do
+    resources :topics, only: [:index, :show, :new, :edit, :create] do
+      resources :comments, only: [:create, :edit, :destroy, :update]
+    end
+  end
+  resources :topics, except: [:index, :show, :new]
+
   resources :user_profiles, except: :destroy
 
   resource :my_profile, only: :show

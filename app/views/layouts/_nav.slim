@@ -32,15 +32,7 @@ main.cd-main-content
   nav.cd-side-nav
     ul
       li.cd-label Main
-      li.has-children.overview
-        a href="#0"  Overview
-        ul
-          li
-            a href="#0"  All Data
-          li
-            a href="#0"  Category 1
-          li
-            a href="#0"  Category 2
+      li.overview = link_to "Forums", forums_path
       li.has-children.notifications.active
         a href="#0"
           | Notifications

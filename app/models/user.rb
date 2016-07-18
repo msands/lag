@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
 
   has_one :user_profile, dependent: :destroy
+  has_many :forums
+  has_many :topics
+  has_many :comments
 
   #delegate :username, to: :user_profile, allow_nil: true
 
