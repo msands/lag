@@ -9,6 +9,16 @@
     = f.input :website, placeholder: "www.example.com"
     = f.input :interests, collection: UserProfile::INTERESTS, as: :check_boxes
     = f.input :about, :input_html => {:rows => 6}, label: "About me", placeholder: "Tell us a little about yourself..."
+    = f.input :avatar_id do
+      - Avatar.all.each do |a|
+        = link_to image_tag("avatars/#{a.filename}"), profile_picture_path(avatar_id: a.id), method: :post
+    /= f.label "Avatar"
+    /= f.input :avatar_id, label: false do
+      - Avatar.all.map do |a|
+        = image_tag("avatars/#{a.filename}")
+    /= f.label "Avatar"
+    /- f.collection_radio_buttons(:avatar_id, Avatar.all, :id, :profile_picture_id) do |avi|
+      = avi.label { image_tag("avatars/#{avi.filename}") + avi.radio_button }
 
   .form-actions
     = f.button :submit

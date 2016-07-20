@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resource :my_profile, only: :show
 
+  resource :profile_picture, only: :create
+
   devise_for :users
 
   get 'about' => 'static_pages#about'
