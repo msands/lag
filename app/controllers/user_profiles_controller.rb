@@ -47,6 +47,6 @@ class UserProfilesController < ApplicationController
   end
 
   def user_profile_params
-    params.require(:user_profile).permit(:church, :state, :website, :birthday, :gender, :about, interests: [])
+    params.require(:user_profile).permit(:church, :state, :website, :birthday, :gender, :about, :avatar_id, interests: [], avatar_attributes: [:filename])
   end
 end

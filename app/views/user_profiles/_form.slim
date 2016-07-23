@@ -9,6 +9,9 @@
     = f.input :website, placeholder: "www.example.com"
     = f.input :interests, collection: UserProfile::INTERESTS, as: :check_boxes
     = f.input :about, :input_html => {:rows => 6}, label: "About me", placeholder: "Tell us a little about yourself..."
+    = f.label "Select your avatar"
+    br
+    = f.collection_radio_buttons(:avatar_id, Avatar.all.collect, :id, :filename) { |a| a.label { a.radio_button + image_tag("avatars/#{a.object.filename}", size: "50x50") } }
 
   .form-actions
     = f.button :submit

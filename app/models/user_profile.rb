@@ -4,6 +4,7 @@ class UserProfile < ActiveRecord::Base
   INTERESTS = ["Gaming", "Photo Editing", "Web Design/Development", "Servers", "Computer Repair"]
 
   belongs_to :user
+  belongs_to :avatar
 
   acts_as_birthday :birthday
 
