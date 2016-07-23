@@ -7,7 +7,7 @@ h1 View all Users
         = link_to user_profile.user.username, user_profile
 
       .panel-body
-        = image_tag("//placehold.it/150x150")
+        = image_tag("avatars/#{user_profile.avatar.filename}", size: "150")
 
       .panel-footer
         p
