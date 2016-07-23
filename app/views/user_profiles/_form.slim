@@ -9,25 +9,9 @@
     = f.input :website, placeholder: "www.example.com"
     = f.input :interests, collection: UserProfile::INTERESTS, as: :check_boxes
     = f.input :about, :input_html => {:rows => 6}, label: "About me", placeholder: "Tell us a little about yourself..."
-    /= f.input :avatar_id do
-      - Avatar.all.each do |a|
-        = link_to image_tag("avatars/#{a.filename}"), profile_picture_path(avatar_id: a.id), method: :post
-    /= f.label "Avatar"
-    /= f.input :avatar_id, as: :radio_buttons do
-      - Avatar.all.each do |a|
-        = image_tag("avatars/#{a.filename}")
-    /= f.label "Avatar"
-    /= f.collection_radio_buttons(:avatar_id, Avatar.all, :id, :profile_picture_id) do |avi|
-      = avi.label { image_tag("avatars/#{avi.filename}") + avi.radio_button }
-    /= f.input :avatar_id, as: :radio_buttons,  collection: Avatar.all.each
-    /- index = 0
     = f.label "Select your avatar"
     br
     = f.collection_radio_buttons(:avatar_id, Avatar.all.collect, :id, :filename) { |a| a.label { a.radio_button + image_tag("avatars/#{a.object.filename}", size: "50x50") } }
-    /= f.simple_fields_for :avatar do
-      = @avatar.filename
-    /= f.collection_radio_buttons(:avatar, Avatar.all, :id, :filename) do |a|
-      - a.label { a.radio_button + image_tag("avatars/#{a.object.filename}", size: "50x50") }
 
   .form-actions
     = f.button :submit

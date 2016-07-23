@@ -22,7 +22,6 @@ class UserProfilesController < ApplicationController
   def create
     @user_profile = UserProfile.new(user_profile_params)
     @user_profile.user = current_user
-    #@user_profile.avatar = @avatar.filename
     if @user_profile.save
       redirect_to my_profile_path, notice: "Profile successfully saved!"
     else
