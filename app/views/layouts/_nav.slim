@@ -14,7 +14,7 @@ header.cd-main-header
       - if user_signed_in?
         li.has-children.account
           a href="#0"
-            = image_tag("avatars/#{@current_user.user_profile.avatar.filename}", size: "64")
+            = image_tag("avatars/#{current_user_avatar}", size: "64")
             = current_user.username
           ul
             li = link_to "My profile", my_profile_path
