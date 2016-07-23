@@ -11,16 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722193644) do
+ActiveRecord::Schema.define(version: 20160723035344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "avatars", force: :cascade do |t|
-    t.integer  "profile_picture_id"
     t.string   "filename"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -45,14 +44,6 @@ ActiveRecord::Schema.define(version: 20160722193644) do
 
   add_index "forums", ["slug"], name: "index_forums_on_slug", using: :btree
 
-  create_table "profile_pictures", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "avatar_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "user_profile_id"
-  end
-
   create_table "topics", force: :cascade do |t|
     t.text     "title"
     t.text     "message"
@@ -69,15 +60,14 @@ ActiveRecord::Schema.define(version: 20160722193644) do
     t.string   "church"
     t.string   "state"
     t.string   "website"
-    t.string   "interests",                       array: true
+    t.string   "interests",               array: true
     t.date     "birthday"
     t.string   "gender"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "user_id"
     t.text     "about"
     t.integer  "avatar_id"
-    t.integer  "profile_picture_id"
   end
 
   create_table "users", force: :cascade do |t|
