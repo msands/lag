@@ -33,46 +33,24 @@ main.cd-main-content
       li.cd-label Main
       li.overview = link_to "Forums", forums_path
       li.has-children.notifications.active
-        a href="#0"
+        = link_to nil do
           | Notifications
           span.count 3
-        ul
-          li
-            a href="#0"  All Notifications
-          li
-            a href="#0"  Friends
-          li
-            a href="#0"  Other
-      li.has-children.comments
-        a href="#0"  Comments
-        ul
-          li
-            a href="#0"  All Comments
-          li
-            a href="#0"  Edit Comment
-          li
-            a href="#0"  Delete Comment
+      li.has-children.bookmarks
+        = link_to "Events", nil
+        - if user_signed_in? && current_user.admin?
+          ul
+            li = link_to "Add New Event", nil
     ul
       li.cd-label Secondary
-      li.has-children.bookmarks
-        a href="#0"  Bookmarks
-        ul
-          li
-            a href="#0"  All Bookmarks
-          li
-            a href="#0"  Edit Bookmark
-          li
-            a href="#0"  Import Bookmark
       li.has-children.images
-        a href="#0"  Images
-        ul
-          li
-            a href="#0"  All Images
-          li
-            a href="#0"  Edit Image
+        = link_to "Photo Gallery", nil
+        - if user_signed_in? && current_user.admin?
+          ul
+            li = link_to "Upload a new photo", nil
       li.has-children.users
         = link_to "All Users", user_profiles_path
     ul
-      li.cd-label Action
-      li.action-btn
-        a href="#0"  + Button
+      li.cd-label Legal
+      .cd-label-link = link_to "Privacy Policy", privacy_path
+      .cd-label-link = link_to "Terms & Conditions", terms_path
