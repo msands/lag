@@ -1,5 +1,5 @@
 #topics
-  -if current_user.admin
+  -if user_signed_in? && current_user.admin
     .pull-right
       = link_to "Edit Forum", edit_forum_path(@forum), class: "btn btn-primary btn-xs"
       =< link_to "Delete Forum", forum_path(@forum), method: :delete, data: { confirm: "This will delete the forum and all topics. This CANNOT be undone.  Are you sure?" }, class: "btn btn-danger btn-xs"

@@ -1,0 +1,31 @@
+header.cd-main-header
+  = link_to image_tag('cd-logo.svg'), root_path, class: "cd-logo"
+  .cd-search.is-hidden
+    form action="#0"
+      input placeholder="Search..." type="search" /
+  /! cd-search
+  a.cd-nav-trigger href="#0"
+    | Menu
+    span
+  nav.cd-nav
+    ul.cd-top-nav
+      li = link_to "About", about_path
+      li = link_to "Support", "#"
+      - if user_signed_in?
+        li.has-children.account
+          a href="#0"
+            - if current_user.user_profile.present?
+              = image_tag("avatars/#{current_user_avatar}", size: "64")
+            - else
+              = image_tag("avatars/default_avatar.png", size: "64")
+            = current_user.username
+          ul
+            li = link_to "My profile", my_profile_path
+            li = link_to "Edit Account", edit_user_registration_path
+            li = link_to "Logout", destroy_user_session_path, method: :delete
+      - else
+        li.has-children.account
+          = link_to "Account", "#"
+          ul
+            li = link_to "Sign Up", new_user_registration_path
+            li = link_to "Log in", new_user_session_path

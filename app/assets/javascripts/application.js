@@ -18,3 +18,4 @@
 //= require turbolinks
 //= require jquery.menu-aim
 //= require main
+//= require static_pages
