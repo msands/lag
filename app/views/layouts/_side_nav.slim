@@ -1,26 +1,27 @@
-nav.cd-side-nav
-  ul
-    li.cd-label Main
-    li.overview = link_to "Forums", forums_path
-    li.has-children.notifications.active
-      = link_to nil do
-        | Notifications
-        span.count 3
-    li.has-children.bookmarks
-      = link_to "Events", nil
-      - if user_signed_in? && current_user.admin?
-        ul
-          li = link_to "Add New Event", nil
-  ul
-    li.cd-label Secondary
-    li.has-children.images
-      = link_to "Photo Gallery", nil
-      - if user_signed_in? && current_user.admin?
-        ul
-          li = link_to "Upload a new photo", nil
-    li.has-children.users
-      = link_to "All Users", user_profiles_path
-  ul
-    li.cd-label Legal
-    .cd-label-link = link_to "Privacy Policy", privacy_path
-    .cd-label-link = link_to "Terms & Conditions", terms_path
+main.cd-main-content
+  nav.cd-side-nav
+    ul
+      li.cd-label Main
+      li.overview = link_to "Forums", forums_path
+      li.has-children.notifications.active
+        = link_to nil do
+          | Notifications
+          span.count 3
+      li.has-children.bookmarks
+        = link_to "Events", nil
+        - if user_signed_in? && current_user.admin?
+          ul
+            li = link_to "Add New Event", nil
+    ul
+      li.cd-label Secondary
+      li.has-children.images
+        = link_to "Photo Gallery", nil
+        - if user_signed_in? && current_user.admin?
+          ul
+            li = link_to "Upload a new photo", nil
+      li.has-children.users
+        = link_to "All Users", user_profiles_path
+    ul
+      li.cd-label Legal
+      .cd-label-link = link_to "Privacy Policy", privacy_path
+      .cd-label-link = link_to "Terms & Conditions", terms_path

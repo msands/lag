@@ -9,9 +9,8 @@ html.no-js
     = csrf_meta_tags
 
   body
-    = render 'layouts/header_nav'
+    = render 'layouts/nav'
     main.cd-main-content
-      = render 'layouts/side_nav'
       .content-wrapper
         = flash_messages
         = yield
