@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'supports/new'
-
   resources :forums do
     resources :topics, only: [:index, :show, :new, :edit, :create] do
       resources :comments, only: [:create, :edit, :destroy, :update]
@@ -17,6 +15,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get 'support' => 'supports#new'
   get 'about' => 'static_pages#about'
   get 'terms' => 'static_pages#terms'
   get 'privacy' => 'static_pages#privacy'
