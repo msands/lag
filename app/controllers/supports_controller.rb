@@ -1,4 +1,6 @@
 class SupportsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @support = Support.new
   end
