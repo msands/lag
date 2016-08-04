@@ -9,4 +9,6 @@ class Support < ActiveRecord::Base
 
   validates :subject, :presence => true
   validates :message, :presence => true
+
+  belongs_to :user
 end

@@ -7,7 +7,10 @@ class SupportsController < ApplicationController
 
   def create
     @support = Support.new(support_params)
+    @support.username = current_user.username
+    @support.user = current_user
     if @support.save
+      UserMailer.support_email(@support,@user).deliver_now
       redirect_to root_path, notice: "Your support ticket has been submitted!"
     else
       flash[:error] = "Something's not right; please resubmit"
