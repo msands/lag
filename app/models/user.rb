@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :forums
   has_many :topics
   has_many :comments
+  has_many :supports
 
   #delegate :username, to: :user_profile, allow_nil: true
 

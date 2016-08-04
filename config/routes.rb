@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get 'support' => 'supports#new'
+  post 'support' => 'supports#create'
   get 'about' => 'static_pages#about'
   get 'terms' => 'static_pages#terms'
   get 'privacy' => 'static_pages#privacy'
