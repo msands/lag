@@ -5,8 +5,8 @@ main.cd-main-content
       li.overview = link_to "Forums", forums_path
       li.has-children.notifications.active
         = link_to nil do
-          | Notifications
-          span.count 3
+          | Alerts
+          span.count !
       li.has-children.bookmarks
         = link_to "Events", nil
         - if user_signed_in? && current_user.admin?
