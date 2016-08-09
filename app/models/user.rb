@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   #delegate :username, to: :user_profile, allow_nil: true
 
   validates :username, :presence => true, :uniqueness => { :case_sensitive => false }, format: { without: /\s/ }
+  validates :terms, :presence => true
 
   def login=(login)
     @login = login
