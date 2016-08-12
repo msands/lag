@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :events
+
   resources :forums do
     resources :topics, only: [:index, :show, :new, :edit, :create] do
       resources :comments, only: [:create, :edit, :destroy, :update]

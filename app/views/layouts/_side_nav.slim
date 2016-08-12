@@ -8,10 +8,10 @@ main.cd-main-content
           | Alerts
           span.count !
       li.has-children.bookmarks
-        = link_to "Events", nil
+        = link_to "Events", events_path
         - if user_signed_in? && current_user.admin?
           ul
-            li = link_to "Add New Event", nil
+            li = link_to "Add New Event", new_event_path
     ul
       li.cd-label Secondary
       li.has-children.images
