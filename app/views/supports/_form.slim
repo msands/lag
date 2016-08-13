@@ -4,7 +4,7 @@
   .form-inputs
     = s.input :username, placeholder: current_user.username, disabled: true
     = s.input :subject, collection: Support::SUBJECT
-    = s.input :message, :input_html => { :rows => 6 }
+    = s.input :message, :input_html => { rows: 6 }
 
   .form-actions
     = s.submit :send

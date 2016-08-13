@@ -8,10 +8,10 @@ class CreateEvents < ActiveRecord::Migration
       t.time :time_end
       t.string :address
       t.string :state
-      t.integer :zip_code
+      t.string :zip_code
       t.string :event_organizer
       t.string :dress_code
-      t.integer :price
+      t.string :price
       t.string :food_provided
       t.text :notes
       t.integer :user_id
