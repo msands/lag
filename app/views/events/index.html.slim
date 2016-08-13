@@ -1,2 +1,15 @@
-h1 Events#index
-p Find me in app/views/events/index.html.slim
+h1 All Events
+
+- @events.each do |event|
+  .col-md-3
+    .box.panel.panel-default
+      .panel-heading
+        = link_to event.title, event
+
+      .panel-body
+        = event.description
+
+      .panel-footer
+        = event.date
+        br
+        = event.time_start
