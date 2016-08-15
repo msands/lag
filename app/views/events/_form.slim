@@ -5,7 +5,7 @@
     = e.input :event_organizer, placeholder: current_user.username, disabled: true
     = e.input :title, placeholder: "Event Title"
     = e.input :description, placeholder: "Event Description"
-    = e.input :date, as: :date, start_year: Date.today.year, end_year: Date.today.year + 3, selected: Date.today, order: [:month, :day, :year]
+    = e.input :date, as: :date, start_year: Date.today.year, end_year: Date.today.year + 3, order: [:month, :day, :year]
     = e.input :time_start, as: :time, default: Time.parse('20:00'), ampm: true, minute_step: 15
     = e.input :time_end, as: :time, default: Time.parse('22:00'), ampm: true, minute_step: 15
     = e.label "Location"

@@ -7,6 +7,8 @@ h1 All Events
         = link_to event.title, event
 
       .panel-body
+        = image_tag google_map(center: [ event.address, event.city, event.state, event.zip_code ].join(','))
+
         = event.description
 
       .panel-footer
