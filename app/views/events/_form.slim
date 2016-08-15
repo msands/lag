@@ -10,6 +10,7 @@
     = e.input :time_end, as: :time, default: Time.parse('22:00'), ampm: true, minute_step: 15
     = e.label "Location"
     = e.input :address, placeholder: "Event Address", label: false
+    = e.input :city, placeholder: "Event City"
     = e.input :state, collection: us_states, selected: "GA"
     = e.input :zip_code, as: :integer, :input_html => { :maxlength => 5 }, placeholder: "Zip code"
     = e.input :price
