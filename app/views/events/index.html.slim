@@ -10,6 +10,6 @@ h1 All Events
         = event.description
 
       .panel-footer
-        = event.date
+        = event.date.strftime("%a, %B %d, %Y")
         br
-        = event.time_start
+        = event.time_start.strftime("%I:%M %p")

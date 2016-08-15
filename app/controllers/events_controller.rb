@@ -25,6 +25,15 @@ class EventsController < ApplicationController
     end
   end
 
+  def update
+    if @event.update_attributes(events_params)
+      flash[:success] = "Event updated"
+      redirect_to @event
+    else
+      render "edit"
+    end
+  end
+
   protected
 
   def find_event
