@@ -5,7 +5,7 @@ module EventsHelper
   end
 
   def google_map_show(center)
-    "https://maps.googleapis.com/maps/api/staticmap?center=#{center}&zoom=17&markers=color:blue%7Clabel:%7C#{center}&size=800x200&style=#{snazzy_map}"
+    "https://maps.googleapis.com/maps/api/staticmap?center=#{center}&zoom=17&markers=color:blue%7Clabel:%7C#{center}&size=1200x200&style=#{snazzy_map}"
   end
 
   def snazzy_map

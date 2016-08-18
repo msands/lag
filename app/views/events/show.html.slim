@@ -1,19 +1,20 @@
-h1.text-center = @event.title
-- if @event.user == current_user
-  h5.text-center = link_to "Edit my event", edit_event_path
+#events
+  h1.text-center = @event.title
+  - if @event.user == current_user
+    h5.text-center = link_to "Edit my event", edit_event_path
 
   = image_tag google_map_show(center: [@event.address, @event.city, @event.state, @event.zip_code ].join(','))
-p = @event.event_organizer
-p = @event.description
-p = @event.date.strftime("%a, %B %d, %Y")
-p = @event.time_start.strftime("%I:%M %p")
-p = @event.time_end.strftime("%I:%M %p")
-p = @event.address
-p = @event.city
-p = @event.state
-p = @event.zip_code
-p = link_to "MAP", "http://www.google.com/maps/place/#{@event.address},#{@event.city},#{@event.state},#{@event.zip_code}/", target: "_blank"
-p = @event.dress_code
-p = @event.price
-p = @event.food_provided
-p = @event.notes
+  p = @event.event_organizer
+  p = @event.description
+  p = @event.date.strftime("%a, %B %d, %Y")
+  p = @event.time_start.strftime("%I:%M %p")
+  p = @event.time_end.strftime("%I:%M %p")
+  p = @event.address
+  p = @event.city
+  p = @event.state
+  p = @event.zip_code
+  p = link_to "MAP", "http://www.google.com/maps/place/#{@event.address},#{@event.city},#{@event.state},#{@event.zip_code}/", target: "_blank"
+  p = @event.dress_code
+  p = @event.price
+  p = @event.food_provided
+  p = @event.notes
