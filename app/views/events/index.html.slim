@@ -1,15 +1,18 @@
 h1 All Events
 
 - @events.each do |event|
-  .col-md-3
-    .box.panel.panel-default
+  .col-md-4
+    .event-box.panel.panel-default
       .panel-heading
         = link_to event.title, event
 
       .panel-body
+        = image_tag google_map_index(center: [ event.address, event.city, event.state, event.zip_code ].join(','))
+        br
         = event.description
 
       .panel-footer
-        = event.date
-        br
-        = event.time_start
+        strong
+          = event.date.strftime("%a, %B %d, %Y")
+          br
+          = event.time_start.strftime("%I:%M %p")

@@ -25,6 +25,18 @@ class EventsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @event.update_attributes(events_params)
+      flash[:success] = "Event updated"
+      redirect_to @event
+    else
+      render "edit"
+    end
+  end
+
   protected
 
   def find_event
@@ -32,6 +44,6 @@ class EventsController < ApplicationController
   end
 
   def events_params
-    params.require(:event).permit(:title, :description, :date, :time_start, :time_end, :address, :state, :zip_code, :event_organizer, :dress_code, :price, :food_provided, :notes)
+    params.require(:event).permit(:title, :description, :date, :time_start, :time_end, :address, :city, :state, :zip_code, :event_organizer, :dress_code, :price, :food_provided, :notes)
   end
 end
