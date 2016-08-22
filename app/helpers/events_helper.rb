@@ -1,5 +1,9 @@
 module EventsHelper
 
+  def google_location_link
+    "http://www.google.com/maps/place/#{@event.address},#{@event.city},#{@event.state},#{@event.zip_code}/"
+  end
+
   def google_map_index(center)
     "https://maps.googleapis.com/maps/api/staticmap?center=#{center}&zoom=17&markers=color:blue%7Clabel:%7C#{center}&size=300x300&style=#{snazzy_map}"
   end

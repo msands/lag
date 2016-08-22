@@ -1,20 +1,38 @@
 #events
-  h1.text-center = @event.title
-  - if @event.user == current_user
-    h5.text-center = link_to "Edit my event", edit_event_path
+  h1 = @event.title
 
   = image_tag google_map_show(center: [@event.address, @event.city, @event.state, @event.zip_code ].join(','))
-  p = @event.event_organizer
-  p = @event.description
-  p = @event.date.strftime("%a, %B %d, %Y")
-  p = @event.time_start.strftime("%I:%M %p")
-  p = @event.time_end.strftime("%I:%M %p")
-  p = @event.address
-  p = @event.city
-  p = @event.state
-  p = @event.zip_code
-  p = link_to "MAP", "http://www.google.com/maps/place/#{@event.address},#{@event.city},#{@event.state},#{@event.zip_code}/", target: "_blank"
-  p = @event.dress_code
-  p = @event.price
-  p = @event.food_provided
-  p = @event.notes
+  hr
+  .text-center
+    - if @event.user == current_user
+      h5 = link_to "Edit my event", edit_event_path, class: "btn btn-primary"
+    p = @event.description
+
+  p
+    strong Date:
+    =< @event.date.strftime("%a, %B %d, %Y")
+  .event-organizer
+    p
+      strong Organizer:
+      =< link_to @event.event_organizer, @event.user.user_profile
+  p
+    strong Time:
+    =<> @event.time_start.strftime("%I:%M %p")
+    |-
+    =<> @event.time_end.strftime("%I:%M %p")
+  p
+    strong Location:
+    =< link_to "#{@event.address}, #{@event.city}, #{@event.state} #{@event.zip_code}", google_location_link, target: "_blank"
+  p
+    strong Dress Code:
+    =< @event.dress_code
+  p
+    strong Price:
+    =< @event.price
+  p
+    strong Food Provided:
+    =< @event.food_provided
+  p
+    strong Notes:
+    br
+    = @event.notes
